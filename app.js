@@ -21,23 +21,29 @@ function moveFilesBetweenDir ( startDir, finishDir) {
 
     }))
 }
-// fs.readdir((homeWorkDir2000), ((err, res) => {
-//     if (err){
-//        return  console.log(err);
-//     }
-//     res.forEach(file =>{
-//         fs.rename(path.join(homeWorkDir2000, file), path.join(homeWorkDir1800, file) , (err1 => console.log(err1)) )
-//     })
-// }))
-//
-// fs.readdir((homeWorkDir1800), ((err, res) => {
-//     if (err){
-//         return  console.log(err);
-//     }
-//     res.forEach(file =>{
-//         fs.rename(path.join(homeWorkDir1800, file), path.join(homeWorkDir2000, file), (err1 => console.log(err1)) )
-//     })
 
-//
-// }))
+const dirForRecursiveDelete = path.join(process.cwd(), 'recurcive-delete');
+
+recursiveDelete(dirForRecursiveDelete)
+
+function recursiveDelete (dirPath) {
+        fs.readdir(dirPath, ((err, res) => {
+            console.log(res);
+            res.forEach(element => {
+              const currentPath = path.join(dirPath, element)
+              fs.stat(currentPath, (err, stats) => {
+                  if (stats.isDirectory()) {
+                      recursiveDelete(currentPath)
+                  } else {
+                      fs.unlink((currentPath), err1 => err1 ? console.log(err1) : null)
+                     }
+                 })
+
+                })
+
+        }))
+    fs.rmdir(dirPath, err1 => err1? console.log(err1): null)
+}
+
+
 
