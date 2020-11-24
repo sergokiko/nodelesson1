@@ -37,6 +37,7 @@ function moveFilesBetweenDir ( startDir, finishDir) {
 //     res.forEach(file =>{
 //         fs.rename(path.join(homeWorkDir1800, file), path.join(homeWorkDir2000, file), (err1 => console.log(err1)) )
 //     })
+
 //
 // }))
 
