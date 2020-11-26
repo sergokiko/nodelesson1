@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .header{
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div><h1>My homework</h1></div>
+    <div><button><a href="/auth">auth</a></button> <button ><a href="/login">Log in</a></button></div>
+
+</header>
+<h2>MainPage</h2>
+
+{{#if isLogged}}
+    <button><a href="/users">show users</a></button>
+{{else}}
+     <p>You are not logged in</p>
+{{/if}}
+
+
+</body>
+</html>
