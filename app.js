@@ -33,6 +33,7 @@ app.get('/', ((req, res) => {
 }))
 
 app.get('/users', ((req, res) => {
+
     isLogged ? (res.render('users', {users, currentUserName})) : (res.render('errPage'))
 
 }))
@@ -43,13 +44,14 @@ app.get('/login', ((req, res) => {
 }))
 
 app.post('/login', (req, res) => {
-    const {email, password, name} = req.body;
-    const isUserExist = !!users.find(el => el.email === email && el.password === password);
+    const {email, password} = req.body;
+    const isUserExist = users.find(el => el.email === email && el.password === password);
     if (!isUserExist) {
         res.redirect('/error')
         return
     }
-    currentUserName = name
+
+    currentUserName = isUserExist.name
     isLogged = true
     res.redirect('/users')
 })
