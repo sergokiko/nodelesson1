@@ -2,14 +2,11 @@ const fs = require('fs')
 const path = require('path')
 const express = require('express')
 const expressHbs = require('express-handlebars');
-const app = express();
+
 const viewsPath = path.join(process.cwd(), 'views')
 const jsonUsersPath = path.join(process.cwd(), './users.json')
 
-let isLogged = false;
-let currentUserName = ''
-let errorMsg = ''
-
+const app = express();
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(express.static(viewsPath))
@@ -22,6 +19,11 @@ app.listen(5000, () => {
     console.log('app listen 5000')
 })
 
+
+
+let isLogged = false;
+let currentUserName = ''
+let errorMsg = ''
 
 //main page
 
