@@ -15,10 +15,6 @@ app.set('view engine', '.hbs');
 app.engine('.hbs', expressHbs({defaultLayout: false}));
 app.set('views', viewsPath);
 
-
-
-
-
 let isLogged = false;
 let currentUserName = '';
 let errorMsg = '';
@@ -28,7 +24,6 @@ let errorMsg = '';
 app.get('/', ((req, res) => {
     res.render('main', {isLogged});
 }));
-
 
 //log in/ log out
 
@@ -87,7 +82,6 @@ app.post('/auth', ((req, res) => {
 
     }));
 }));
-
 
 //users page
 
