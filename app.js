@@ -18,20 +18,19 @@ app.set('view engine', '.hbs');
 app.engine('.hbs', expressHbs({defaultLayout: false}));
 app.set('views', viewsPath)
 
+app.listen(5000, () => {
+    console.log('app listen 5000')
+})
+
+
+//main page
 
 app.get('/', ((req, res) => {
     res.render('main', {isLogged})
 }))
 
 
-app.get('/users', (req, res) => {
-    fs.readFile(jsonUsersPath, ((err, data) => {
-        const users = JSON.parse(data.toString());
-
-        isLogged ? (res.render('users', {users, currentUserName})) : (res.render('errPage'))
-    }))
-})
-
+//log in/ log out
 
 app.get('/login', ((req, res) => {
     res.render('login')
@@ -56,12 +55,12 @@ app.post('/login', (req, res) => {
     }))
 })
 
-
 app.post('/logout', ((req, res) => {
     isLogged = false;
     res.redirect('/login')
 }))
 
+//auth
 
 app.get('/auth', ((req, res) => {
     isLogged = false
@@ -90,13 +89,26 @@ app.post('/auth', ((req, res) => {
 }))
 
 
-app.get('/error', ((req, res) => {
-    res.render('errPage', {errorMsg})
-}))
+//users page
 
-app.listen(5000, () => {
-    console.log('app listen 5000')
+app.get('/users', (req, res) => {
+    fs.readFile(jsonUsersPath, ((err, data) => {
+        const users = JSON.parse(data.toString());
+
+        if (!isLogged) {
+            errorMsg = 'You are not logged in'
+            res.redirect('/error')
+            return
+        }
+        res.render('users', {users, currentUserName})
+    }))
 })
+
+
+//error page
+app.get('/error', ((req, res) => {
+    res.render('err-page', {errorMsg})
+}))
 
 
 
