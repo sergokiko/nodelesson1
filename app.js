@@ -26,7 +26,6 @@ app.get('/', ((req, res) => {
 }));
 
 //log in/ log out
-
 app.get('/login', ((req, res) => {
     res.render('login');
 }));
@@ -56,7 +55,6 @@ app.post('/logout', ((req, res) => {
 }));
 
 //auth
-
 app.get('/auth', ((req, res) => {
     isLogged = false;
     res.render('auth');
@@ -84,7 +82,6 @@ app.post('/auth', ((req, res) => {
 }));
 
 //users page
-
 app.get('/users', (req, res) => {
     fs.readFile(jsonUsersPath, ((err, data) => {
         const users = JSON.parse(data.toString());
@@ -98,12 +95,10 @@ app.get('/users', (req, res) => {
     }));
 });
 
-
 //error page
 app.get('/error', ((req, res) => {
     res.render('err-page', {errorMsg});
 }));
-
 
 app.listen(5000, () => {
     console.log('app listen 5000');
