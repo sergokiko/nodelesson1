@@ -34,29 +34,33 @@ app.post('/login', (req, res) => {
     const {email, password} = req.body;
 
     fs.readFile(jsonUsersPath, ((err, data) => {
+        if (err) throw err
+
         const users = JSON.parse(data.toString());
         const isUserExist = users.find(el => el.email === email && el.password === password);
 
         if (!isUserExist) {
-            errorMsg = 'Wrong password or email';
             res.redirect('/error');
             return;
         }
 
         currentUserName = isUserExist.name;
         isLogged = true;
+
         res.redirect('/users');
     }))
 })
 
 app.post('/logout', ((req, res) => {
     isLogged = false;
+
     res.redirect('/login');
 }));
 
 //auth
 app.get('/auth', ((req, res) => {
     isLogged = false;
+
     res.render('auth');
 }));
 
@@ -64,6 +68,7 @@ app.post('/auth', ((req, res) => {
     const {email} = req.body;
 
     fs.readFile(jsonUsersPath, ((err, data) => {
+        if (err) throw err
 
         const users = JSON.parse(data.toString());
         const isEmailExist = users.find(el => el.email === email);
@@ -75,9 +80,11 @@ app.post('/auth', ((req, res) => {
         }
 
         users.push(req.body);
-        res.redirect('/login');
-        fs.writeFile(jsonUsersPath, JSON.stringify(users), err => err && null);
+        fs.writeFile(jsonUsersPath, JSON.stringify(users), err => {
+            if (err) throw err
+        });
 
+        res.redirect('/login');
     }));
 }));
 
@@ -91,6 +98,7 @@ app.get('/users', (req, res) => {
             res.redirect('/error');
             return;
         }
+
         res.render('users', {users, currentUserName});
     }));
 });
