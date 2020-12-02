@@ -7,34 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        .header {
+        .header{
             display: flex;
             justify-content: space-around;
-        }
-        .navbar{
-            display: flex;
         }
     </style>
 </head>
 <body>
 <header class="header">
     <div><h1>My homework</h1></div>
-    <div class="navbar">
-        <div>
-            <button><a href="/auth">auth</a></button>
-        </div>
-        <div>
-            <form action="/logout" method="post"><input type="submit" value="Log out"></form>
-        </div>
-    </div>
-
+    <div><button><a href="/auth/register">register</a></button> <button ><a href="/auth/login">Log in</a></button></div>
 </header>
-<h2>Welcome {{currentUserName}}</h2>
-{{#each users}}
-    <div>{{this.name}}</div>
-    <div>{{this.email}}</div>
-    <hr>
-{{/each}}
-
+<h2>Sign up</h2>
+<form action="/auth/register" method="post">
+    <input type="text" name="name" placeholder="name">
+    <input type="email" name="email" placeholder="email">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit" value="Sign up">
+</form>
 </body>
 </html>

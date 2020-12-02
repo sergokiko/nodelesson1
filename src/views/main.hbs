@@ -16,13 +16,14 @@
 <body>
 <header class="header">
     <div><h1>My homework</h1></div>
-    <div><button><a href="/auth">auth</a></button> <button ><a href="/login">Log in</a></button></div>
-
+    <div><button><a href="/auth/register">register</a></button> <button ><a href="/auth/login">Log in</a></button></div>
 </header>
-<form action="/login" method="post">
-    <input name="email" type="email" placeholder="email">
-    <input name="password" type="password" placeholder="password">
-    <input type="submit" value="log In">
-</form>
+<h2>MainPage</h2>
+
+{{#if isLogged}}
+    <button><a href="/users">show users</a></button>
+{{else}}
+     <p>You are not logged in</p>
+{{/if}}
 </body>
 </html>
