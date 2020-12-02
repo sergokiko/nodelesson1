@@ -6,7 +6,7 @@ const authRouter = Router();
 
 authRouter.get('/login', authController.getLoginPage);
 authRouter.post('/login', authMiddleware.checkUserValidity, authMiddleware.checkIfEmailAndPasswordCorrect,
-    authController.loginUser);
+    authMiddleware.checkPasswordLength, authController.loginUser);
 
 authRouter.get('/logout', authController.logout);
 
