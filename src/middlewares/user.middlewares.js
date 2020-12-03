@@ -1,19 +1,6 @@
 const userService = require('../sevices/user.service');
-const { isLogged } = require('../varialables/auth.enum');
 
 module.exports = {
-    checkIfUserIsLogged: (req, res, next) => {
-        try {
-            if (!isLogged) {
-                throw new Error('You are not logged in, please login first');
-            }
-
-            next();
-        } catch (e) {
-            res.status(401).json(e.message);
-        }
-    },
-
     checkIfEmailValid: (req, res, next) => {
         try {
             const { email } = req.body;
@@ -59,5 +46,18 @@ module.exports = {
         } catch (e) {
             res.status(400).json(e.message);
         }
-    }
+    },
+    checkUserCredentialsValidity: (req, res, next) => {
+        try {
+            const user = req.body;
+
+            if (!user.email || !user.password) {
+                throw new Error('Email amd password should be not empty');
+            }
+
+            next();
+        } catch (e) {
+            res.status(400).json(e.message);
+        }
+    },
 };

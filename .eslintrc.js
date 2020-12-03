@@ -56,6 +56,7 @@ module.exports = {
         'no-empty': 'off',
         'no-empty-functions': 'off',
         'consistent-return': 'off',
+        'no-dynamic-require': 'off',
         'no-eval': 'error',
         'no-extend-native': 'error',
         'no-extra-bind': 'error',

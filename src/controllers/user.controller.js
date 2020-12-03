@@ -1,12 +1,12 @@
 const { userService: { findUsers, removeUser, findUser } } = require('../sevices');
-const { currentUserEmail } = require('../varialables/currentUser');
+const { userService: { createUser } } = require('../sevices');
 
 module.exports = {
-    getAllUsers: (req, res) => {
+    getAllUsers: async (req, res) => {
         try {
-            const users = findUsers();
+            const users = await findUsers();
 
-            res.status(200).render('users', { users, currentUserEmail });
+            res.status(200).json(users);
         } catch (e) {
             res.status(400).json(e.message);
         }
@@ -28,6 +28,16 @@ module.exports = {
             const foundedUser = findUser(email);
 
             res.status(200).json(foundedUser);
+        } catch (e) {
+            res.status(400).json(e.message);
+        }
+    },
+
+    authNewUser: (req, res) => {
+        try {
+            createUser(req.body);
+
+            res.status(200).redirect('/login');
         } catch (e) {
             res.status(400).json(e.message);
         }

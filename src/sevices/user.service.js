@@ -1,16 +1,17 @@
-let { users } = require('../database');
+const db = require('../database').getInstance();
 
 module.exports = {
-    findUsers: () => users,
+    findUsers: () => {
+        const UserModel = db.setModels('User');
+
+        return UserModel.findAll();
+    },
 
     createUser: (user) => {
-        users.push(user);
-        return users;
-    },
+        const UserModel = db.setModels('User');
 
-    removeUser: (email) => {
-        users = users.filter((user) => user.email !== email);
-        return users;
+        return UserModel.create(user);
     },
-    findUser: (email) => users.find((user) => user.email === email)
+    removeUser: (id) => id,
+    findUser: (id) => id
 };
