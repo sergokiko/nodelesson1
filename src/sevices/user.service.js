@@ -1,5 +1,4 @@
-const { UserModel } = require('../database/models');
-const { CarModel } = require('../database/models');
+const { UserModel, CarModel } = require('../database/models');
 
 module.exports = {
     findUsers: () => UserModel.findAll(),
