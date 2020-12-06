@@ -1,17 +1,23 @@
-const db = require('../database').getInstance();
+const { UserModel } = require('../database/models');
+const { CarModel } = require('../database/models');
 
 module.exports = {
-    findUsers: () => {
-        const UserModel = db.setModels('User');
+    findUsers: () => UserModel.findAll(),
 
-        return UserModel.findAll();
-    },
+    createUser: (user) => UserModel.create(user),
 
-    createUser: (user) => {
-        const UserModel = db.setModels('User');
+    removeUser: (email) => UserModel.destroy({
+        where: { email }
+    }),
 
-        return UserModel.create(user);
-    },
-    removeUser: (id) => id,
-    findUser: (id) => id
+    findUserById: (id) => CarModel.findAll({
+        where: { users_id: id },
+        include: [{ model: UserModel, as: 'user' }]
+    }),
+
+    updateUser: (email, user) => UserModel.update(
+        user,
+        { where: { email } }
+    )
+
 };

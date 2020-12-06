@@ -1,28 +1,35 @@
 const { Model, DataTypes } = require('sequelize');
+
 const { sequelize } = require('../index');
 
-class UserModel extends Model {
+class CarModel extends Model {
 }
 
-UserModel.init({
+CarModel.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    name: {
+
+    model: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    email: {
+
+    volume: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
     },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
+
+    user_id: {
+        type: DataTypes.INTEGER,
+        foreignKey: true
     }
 }, { sequelize });
 
-module.exports = UserModel;
+const UserModel = require('./User');
+
+CarModel.belongsTo(UserModel, { foreignKey: 'user_id' });
+
+module.exports = CarModel;

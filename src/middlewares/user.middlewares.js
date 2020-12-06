@@ -1,12 +1,12 @@
 const userService = require('../sevices/user.service');
 
 module.exports = {
-    checkIfEmailValid: (req, res, next) => {
+    checkIfIdValid: (req, res, next) => {
         try {
-            const { email } = req.body;
+            const { id } = req.body;
 
-            if (!email) {
-                throw new Error('Email is not valid');
+            if (!id) {
+                throw new Error('id is not valid');
             }
 
             next();
@@ -15,12 +15,12 @@ module.exports = {
         }
     },
 
-    checkIfUserExist: (req, res, next) => {
+    checkIfUserWithThisIdExist: async (req, res, next) => {
         try {
-            const { email } = req.body;
-            const usersData = userService.findUsers();
+            const { id } = req.body;
+            const usersData = await userService.findUsers();
 
-            const foundUser = usersData.find((user) => user.email === email);
+            const foundUser = usersData.find((user) => user.id === id);
 
             if (foundUser) {
                 throw new Error('current user not exist in base');
@@ -32,10 +32,11 @@ module.exports = {
         }
     },
 
-    checkIfEmailForDeleteIsValid: (req, res, next) => {
+    checkIfEmailExistInBase: async (req, res, next) => {
         try {
             const { email } = req.params;
-            const users = userService.findUsers();
+            const users = await userService.findUsers();
+
             const findUser = users.find((user) => user.email === email);
 
             if (!findUser) {
@@ -47,6 +48,24 @@ module.exports = {
             res.status(400).json(e.message);
         }
     },
+
+    checkIfEmailForDeleteExistInBase: async (req, res, next) => {
+        try {
+            const { email } = req.params;
+            const users = await userService.findUsers();
+
+            const findUser = users.find((user) => user.email === email);
+
+            if (findUser) {
+                throw new Error('This User already exist');
+            }
+
+            next();
+        } catch (e) {
+            res.status(400).json(e.message);
+        }
+    },
+
     checkUserCredentialsValidity: (req, res, next) => {
         try {
             const user = req.body;
@@ -60,4 +79,32 @@ module.exports = {
             res.status(400).json(e.message);
         }
     },
+
+    checkPasswordValidity: (req, res, next) => {
+        try {
+            const { password } = req.body;
+
+            if (password.length < 8) {
+                throw new Error('Password should contain at least 8 characters');
+            }
+
+            next();
+        } catch (e) {
+            res.status(400).json(e.message);
+        }
+    },
+
+    checkIfEmailValid: (req, res, next) => {
+        try {
+            const { email } = req.body;
+
+            if (!email) {
+                throw new Error('id is not valid');
+            }
+
+            next();
+        } catch (e) {
+            res.status(400).json(e.message);
+        }
+    }
 };

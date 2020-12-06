@@ -6,11 +6,15 @@ const userRouter = Router();
 
 userRouter.get('/', userController.getAllUsers);
 
-userRouter.get('/:email', userMiddleware.checkIfEmailValid, userMiddleware.checkIfUserExist, userController.getUserByEmail);
+userRouter.post('/', userMiddleware.checkUserCredentialsValidity, userMiddleware.checkIfEmailForDeleteExistInBase,
+    userMiddleware.checkPasswordValidity, userController.authNewUser);
 
-userRouter.delete('/:email', userMiddleware.checkIfEmailForDeleteIsValid, userController.deleteUser);
+userRouter.get('/:id', userMiddleware.checkIfIdValid, userMiddleware.checkIfUserWithThisIdExist,
+    userController.getUserWithCarById);
 
-// eslint-disable-next-line max-len
-userRouter.post('/', userMiddleware.checkIfUserExist, userMiddleware.checkUserCredentialsValidity, userController.authNewUser);
+userRouter.delete('/:email', userMiddleware.checkIfEmailExistInBase, userController.deleteUser);
+
+userRouter.put('/:email', userMiddleware.checkIfEmailValid, userMiddleware.checkIfEmailExistInBase,
+    userMiddleware.checkPasswordValidity, userController.authNewUser);
 
 module.exports = userRouter;

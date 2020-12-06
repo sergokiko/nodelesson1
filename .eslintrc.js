@@ -48,6 +48,7 @@ module.exports = {
         'no-duplicate-imports': 'error',
         'no-nested-ternary': 'error',
         'no-mixed-spaces-and-tabs': 'error',
+        'no-mixed-operators': 'off',
         'no-bitwise': 'error',
         'no-caller': 'error',
         'no-cond-assign': 'error',
