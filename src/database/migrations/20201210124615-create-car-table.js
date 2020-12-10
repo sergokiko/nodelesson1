@@ -42,8 +42,6 @@ module.exports = {
                     model: 'user',
                     key: 'id'
                 },
-                onDelete: 'CASCADE',
-                onUpdate: 'CASCADE',
             }
         });
     },
