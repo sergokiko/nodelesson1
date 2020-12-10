@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8dc29b6-cd1a-4023-8a12-ddbd27730190" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/database/models/Car.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/models/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/responce-codes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/error/ErrorHandler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/error/errors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/error/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sequelizerc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/users.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/middlewares/user.middlewares.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middlewares/user.middlewares.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/user.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/user.router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sevices/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sevices/user.service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +99,7 @@
       <workItem from="1606997732500" duration="963000" />
       <workItem from="1606998781889" duration="990000" />
       <workItem from="1607001153168" duration="7514000" />
-      <workItem from="1607014552997" duration="18377000" />
+      <workItem from="1607014552997" duration="46157000" />
     </task>
     <task id="LOCAL-00001" summary="final">
       <created>1606221700676</created>
@@ -208,7 +206,28 @@
       <option name="project" value="LOCAL" />
       <updated>1607018750918</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="homework 4">
+      <created>1607261232681</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1607261232681</updated>
+    </task>
+    <task id="LOCAL-00017" summary="homework 4">
+      <created>1607261364247</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1607261364248</updated>
+    </task>
+    <task id="LOCAL-00018" summary="homework 4">
+      <created>1607261427197</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1607261427197</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,29 +236,35 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="final" />
     <MESSAGE value="semifinal" />
-    <option name="LAST_COMMIT_MESSAGE" value="semifinal" />
+    <MESSAGE value="homework 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="homework 4" />
   </component>
   <component name="WindowStateProjectService">
     <state x="667" y="257" key="#ESLint" timestamp="1607015562093">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="257" key="#ESLint/0.0.1920.1040@0.0.1920.1040" timestamp="1607015562093" />
+    <state x="584" y="198" key="#Inspections" timestamp="1607612807289">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="584" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1607612807289" />
     <state x="687" y="188" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607018128815">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="687" y="188" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607018128815" />
-    <state x="715" y="349" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606227082342">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="715" y="336" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607603610850">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="715" y="336" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607603610850" />
     <state x="715" y="349" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1606227082342" />
     <state x="779" y="211" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1606842156638">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="779" y="211" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606842156638" />
-    <state x="585" y="88" key="CommitChangelistDialog2" timestamp="1607018749986">
+    <state x="585" y="88" key="CommitChangelistDialog2" timestamp="1607261426496">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1607018749986" />
+    <state x="585" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1607261426496" />
     <state x="640" y="275" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1607017045936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -281,10 +306,10 @@
     </state>
     <state x="469" y="172" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607017433690" />
     <state x="469" y="179" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1606221668848" />
-    <state x="560" y="270" key="Vcs.Push.Dialog.v2" timestamp="1607018753849">
+    <state x="560" y="270" key="Vcs.Push.Dialog.v2" timestamp="1607261432846">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="560" y="270" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607018753849" />
+    <state x="560" y="270" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607261432846" />
     <state x="560" y="280" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1606221795540" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1607015417753">
       <screen x="0" y="0" width="1920" height="1040" />
