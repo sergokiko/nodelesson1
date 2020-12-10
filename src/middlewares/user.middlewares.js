@@ -1,17 +1,18 @@
 const userService = require('../sevices/user.service');
+const { ErrorHandler, errors: { NOT_VALID_BODY, NOT_VALID_ID, NOT_EXIST_IN_BASE } } = require('../error');
 
 module.exports = {
     checkIfIdValid: (req, res, next) => {
         try {
-            const { id } = req.body;
+            const { id } = req.params;
 
             if (!id) {
-                throw new Error('id is not valid');
+                throw new ErrorHandler(NOT_VALID_ID.message, NOT_VALID_ID.code);
             }
 
             next();
         } catch (e) {
-            res.status(400).json(e.message);
+            next(e);
         }
     },
 
@@ -23,12 +24,12 @@ module.exports = {
             const foundUser = usersData.find((user) => user.id === id);
 
             if (foundUser) {
-                throw new Error('current user not exist in base');
+                throw new ErrorHandler(NOT_EXIST_IN_BASE.message, NOT_EXIST_IN_BASE.code);
             }
 
             next();
         } catch (e) {
-            res.status(404).json(e.message);
+            next(e);
         }
     },
 
@@ -40,12 +41,12 @@ module.exports = {
             const findUser = users.find((user) => user.email === email);
 
             if (!findUser) {
-                throw new Error('Email is not found in base');
+                throw new ErrorHandler(NOT_EXIST_IN_BASE.message, NOT_EXIST_IN_BASE.code);
             }
 
             next();
         } catch (e) {
-            res.status(400).json(e.message);
+            next(e);
         }
     },
 
@@ -57,12 +58,12 @@ module.exports = {
             const findUser = users.find((user) => user.email === email);
 
             if (findUser) {
-                throw new Error('This User already exist');
+                throw new ErrorHandler(NOT_EXIST_IN_BASE.message, NOT_EXIST_IN_BASE.code);
             }
 
             next();
         } catch (e) {
-            res.status(400).json(e.message);
+            next(e);
         }
     },
 
@@ -71,12 +72,12 @@ module.exports = {
             const user = req.body;
 
             if (!user.email || !user.password) {
-                throw new Error('Email amd password should be not empty');
+                throw new ErrorHandler(NOT_VALID_BODY.message, NOT_VALID_BODY.code);
             }
 
             next();
         } catch (e) {
-            res.status(400).json(e.message);
+            next(e);
         }
     },
 
@@ -85,12 +86,12 @@ module.exports = {
             const { password } = req.body;
 
             if (password.length < 8) {
-                throw new Error('Password should contain at least 8 characters');
+                throw new ErrorHandler(NOT_VALID_BODY.message, NOT_VALID_BODY.code);
             }
 
             next();
         } catch (e) {
-            res.status(400).json(e.message);
+            next(e);
         }
     },
 
@@ -99,12 +100,26 @@ module.exports = {
             const { email } = req.body;
 
             if (!email) {
-                throw new Error('id is not valid');
+                throw new ErrorHandler(NOT_VALID_BODY.message, NOT_VALID_BODY.code);
             }
 
             next();
         } catch (e) {
-            res.status(400).json(e.message);
+            next(e);
         }
-    }
+    },
+
+    checkIfBaseNotEmpty: async (req, res, next) => {
+        try {
+            const users = await userService.findUsers();
+
+            if (!users.length) {
+                throw new ErrorHandler(NOT_EXIST_IN_BASE.message, NOT_EXIST_IN_BASE.code);
+            }
+
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
 };
