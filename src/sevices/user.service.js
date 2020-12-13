@@ -9,7 +9,7 @@ module.exports = {
         where: { email }
     }),
 
-    findUserByParams: (email) => UserModel.findOne({ where: email }),
+    findUserByParams: (params) => UserModel.findOne({ where: params }),
 
     findUserById: (id) => CarModel.findAll({
         where: { users_id: id },

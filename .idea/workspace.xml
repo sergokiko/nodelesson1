@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e8dc29b6-cd1a-4023-8a12-ddbd27730190" name="Default Changelist" comment="homework 5">
+    <list default="true" id="e8dc29b6-cd1a-4023-8a12-ddbd27730190" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/auth.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sevices/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sevices/user.service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +94,7 @@
       <workItem from="1606998781889" duration="990000" />
       <workItem from="1607001153168" duration="7514000" />
       <workItem from="1607014552997" duration="47778000" />
-      <workItem from="1607872296730" duration="11924000" />
+      <workItem from="1607872296730" duration="13691000" />
     </task>
     <task id="LOCAL-00001" summary="final">
       <created>1606221700676</created>
@@ -272,7 +271,21 @@
       <option name="project" value="LOCAL" />
       <updated>1607888749957</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="homework 5">
+      <created>1607889053589</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1607889053589</updated>
+    </task>
+    <task id="LOCAL-00027" summary="homework 5">
+      <created>1607889559339</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1607889559339</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,10 +321,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="779" y="211" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607626392238" />
-    <state x="585" y="88" key="CommitChangelistDialog2" timestamp="1607888749236">
+    <state x="585" y="88" key="CommitChangelistDialog2" timestamp="1607889558568">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1607888749236" />
+    <state x="585" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1607889558568" />
     <state x="640" y="275" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1607017045936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -353,10 +366,10 @@
     </state>
     <state x="469" y="172" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607017433690" />
     <state x="469" y="179" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1606221668848" />
-    <state x="560" y="270" key="Vcs.Push.Dialog.v2" timestamp="1607888751379">
+    <state x="560" y="270" key="Vcs.Push.Dialog.v2" timestamp="1607889561098">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="560" y="270" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607888751379" />
+    <state x="560" y="270" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607889561098" />
     <state x="560" y="280" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1606221795540" />
     <state x="570" y="209" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1607882726929">
       <screen x="0" y="0" width="1920" height="1040" />
