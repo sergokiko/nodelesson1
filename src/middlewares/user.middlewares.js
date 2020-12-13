@@ -1,6 +1,6 @@
 const userService = require('../sevices/user.service');
 
-const { newUserValidator, idValidator } = require('../validators');
+const { UserValidator, idValidator } = require('../validators');
 const {
     ErrorHandler,
     errors: {
@@ -78,7 +78,7 @@ module.exports = {
 
     checkUserCredentialsValidity: (req, res, next) => {
         try {
-            const { error } = newUserValidator.validate(req.body);
+            const { error } = UserValidator.validate(req.body);
 
             if (error) {
                 throw new ErrorHandler(error.details[0].message, BAD_REQUEST);

@@ -1,5 +1,5 @@
 module.exports = {
-    newUserValidator: require('./new-user.validator'),
-    idValidator: require('./new-user.validator'),
+    UserValidator: require('./user.validator'),
+    idValidator: require('./user.validator'),
     loginValidator: require('./login.validator')
 };
