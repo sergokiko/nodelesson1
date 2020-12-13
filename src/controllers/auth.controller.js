@@ -1,4 +1,4 @@
-const { CREATED } = require('../config/responce-codes');
+const { SUCCESS } = require('../config/responce-codes');
 
 module.exports = {
     loginUser: (req, res, next) => {
@@ -7,7 +7,7 @@ module.exports = {
 
             delete user.password;
 
-            res.status(CREATED).json(user);
+            res.status(SUCCESS).json(user);
         } catch (e) {
             next(e);
         }
