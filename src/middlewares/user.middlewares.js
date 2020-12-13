@@ -1,13 +1,22 @@
 const userService = require('../sevices/user.service');
-const { ErrorHandler, errors: { NOT_VALID_BODY, NOT_VALID_ID, NOT_EXIST_IN_BASE } } = require('../error');
+
+const { newUserValidator, idValidator } = require('../validators');
+const {
+    ErrorHandler,
+    errors: {
+        NOT_EXIST_IN_BASE,
+        ALREADY_EXIST_IN_BASE
+    }
+} = require('../error');
+const { BAD_REQUEST } = require('../config/responce-codes');
 
 module.exports = {
     checkIfIdValid: (req, res, next) => {
         try {
-            const { id } = req.params;
+            const { error } = idValidator.validate(req.params.id);
 
-            if (!id) {
-                throw new ErrorHandler(NOT_VALID_ID.message, NOT_VALID_ID.code);
+            if (error) {
+                throw new ErrorHandler(error.details[0].message, BAD_REQUEST);
             }
 
             next();
@@ -40,8 +49,8 @@ module.exports = {
 
             const findUser = users.find((user) => user.email === email);
 
-            if (!findUser) {
-                throw new ErrorHandler(NOT_EXIST_IN_BASE.message, NOT_EXIST_IN_BASE.code);
+            if (findUser) {
+                throw new ErrorHandler(ALREADY_EXIST_IN_BASE.message, ALREADY_EXIST_IN_BASE.code);
             }
 
             next();
@@ -57,7 +66,7 @@ module.exports = {
 
             const findUser = users.find((user) => user.email === email);
 
-            if (findUser) {
+            if (!findUser) {
                 throw new ErrorHandler(NOT_EXIST_IN_BASE.message, NOT_EXIST_IN_BASE.code);
             }
 
@@ -69,38 +78,10 @@ module.exports = {
 
     checkUserCredentialsValidity: (req, res, next) => {
         try {
-            const user = req.body;
+            const { error } = newUserValidator.validate(req.body);
 
-            if (!user.email || !user.password) {
-                throw new ErrorHandler(NOT_VALID_BODY.message, NOT_VALID_BODY.code);
-            }
-
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
-
-    checkPasswordValidity: (req, res, next) => {
-        try {
-            const { password } = req.body;
-
-            if (password.length < 8) {
-                throw new ErrorHandler(NOT_VALID_BODY.message, NOT_VALID_BODY.code);
-            }
-
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
-
-    checkIfEmailValid: (req, res, next) => {
-        try {
-            const { email } = req.body;
-
-            if (!email) {
-                throw new ErrorHandler(NOT_VALID_BODY.message, NOT_VALID_BODY.code);
+            if (error) {
+                throw new ErrorHandler(error.details[0].message, BAD_REQUEST);
             }
 
             next();

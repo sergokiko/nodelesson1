@@ -8,8 +8,7 @@ userRouter.get('/', userMiddleware.checkIfBaseNotEmpty, userController.getAllUse
 
 userRouter.post('/',
     userMiddleware.checkUserCredentialsValidity,
-    userMiddleware.checkIfEmailForDeleteExistInBase,
-    userMiddleware.checkPasswordValidity,
+    userMiddleware.checkIfEmailExistInBase,
     userController.authNewUser);
 
 userRouter.get('/:id', userMiddleware.checkIfBaseNotEmpty,
@@ -19,13 +18,12 @@ userRouter.get('/:id', userMiddleware.checkIfBaseNotEmpty,
 
 userRouter.delete('/:email',
     userMiddleware.checkIfBaseNotEmpty,
-    userMiddleware.checkIfEmailExistInBase,
+    userMiddleware.checkIfEmailForDeleteExistInBase,
     userController.deleteUser);
 
 userRouter.put('/:email', userMiddleware.checkIfBaseNotEmpty,
-    userMiddleware.checkIfEmailValid,
     userMiddleware.checkIfEmailExistInBase,
-    userMiddleware.checkPasswordValidity,
-    userController.authNewUser);
+    userMiddleware.checkUserCredentialsValidity,
+    userController.updateUser);
 
 module.exports = userRouter;

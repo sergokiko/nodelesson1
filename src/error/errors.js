@@ -14,5 +14,9 @@ module.exports = {
     NOT_EXIST_IN_BASE: {
         message: 'data not exist in base',
         code: NO_CONTENT
+    },
+    ALREADY_EXIST_IN_BASE: {
+        message: 'this user already exist',
+        code: BAD_REQUEST
     }
 };

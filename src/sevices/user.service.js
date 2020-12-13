@@ -9,6 +9,8 @@ module.exports = {
         where: { email }
     }),
 
+    findUserByParams: (email) => UserModel.findOne({ where: email }),
+
     findUserById: (id) => CarModel.findAll({
         where: { users_id: id },
         include: [{ model: UserModel, as: 'user' }]

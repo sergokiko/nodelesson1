@@ -1,3 +1,4 @@
+const { hashPassword } = require('../helpers');
 const {
     userService: {
         findUsers,
@@ -8,7 +9,7 @@ const {
     }
 } = require('../sevices');
 
-const { CREATED, SUCCESS } = require('../config/responce-codes')
+const { CREATED, SUCCESS } = require('../config/responce-codes');
 
 module.exports = {
     getAllUsers: async (req, res, next) => {
@@ -16,6 +17,18 @@ module.exports = {
             const users = await findUsers();
 
             res.status(SUCCESS).json(users);
+        } catch (e) {
+            next(e);
+        }
+    },
+    authNewUser: async (req, res, next) => {
+        try {
+            const user = req.body;
+            user.password = await hashPassword(user.password);
+
+            const registeredUser = await createUser(user);
+
+            res.status(CREATED).json(registeredUser);
         } catch (e) {
             next(e);
         }
@@ -37,16 +50,6 @@ module.exports = {
             const foundedUser = await findUserById(id);
 
             res.status(SUCCESS).json(foundedUser);
-        } catch (e) {
-            next(e);
-        }
-    },
-
-    authNewUser: async (req, res, next) => {
-        try {
-            const user = await createUser(req.body);
-
-            res.status(CREATED).json(user);
         } catch (e) {
             next(e);
         }
