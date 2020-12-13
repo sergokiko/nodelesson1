@@ -12,62 +12,43 @@ const {
 const { CREATED, SUCCESS } = require('../config/responce-codes');
 
 module.exports = {
-    getAllUsers: async (req, res, next) => {
-        try {
-            const users = await findUsers();
+    getAllUsers: async (req, res) => {
+        const users = await findUsers();
 
-            res.status(SUCCESS).json(users);
-        } catch (e) {
-            next(e);
-        }
+        res.status(SUCCESS).json(users);
     },
-    authNewUser: async (req, res, next) => {
-        try {
-            const user = req.body;
-            user.password = await hashPassword(user.password);
+    authNewUser: async (req, res) => {
+        const user = req.body;
 
-            const registeredUser = await createUser(user);
+        user.password = await hashPassword(user.password);
 
-            res.status(CREATED).json(registeredUser);
-        } catch (e) {
-            next(e);
-        }
+        const registeredUser = await createUser(user);
+
+        res.status(CREATED).json(registeredUser);
     },
 
-    deleteUser: async (req, res, next) => {
-        try {
-            const user = await removeUser(req.params.email);
+    deleteUser: async (req, res) => {
+        const user = await removeUser(req.params.email);
 
-            res.status(SUCCESS).json(user);
-        } catch (e) {
-            next(e);
-        }
+        res.status(SUCCESS).json(user);
     },
 
-    getUserWithCarById: async (req, res, next) => {
-        try {
-            const { id } = req.params;
-            const foundedUser = await findUserById(id);
+    getUserWithCarById: async (req, res) => {
+        const { id } = req.params;
+        const foundedUser = await findUserById(id);
 
-            res.status(SUCCESS).json(foundedUser);
-        } catch (e) {
-            next(e);
-        }
+        res.status(SUCCESS).json(foundedUser);
     },
 
-    updateUser: async (req, res, next) => {
-        try {
-            const { email } = req.params;
-            const user = req.body;
+    updateUser: async (req, res) => {
+        const { email } = req.params;
+        const user = req.body;
 
-            user.password = await hashPassword(user.password);
+        user.password = await hashPassword(user.password);
 
-            const result = await updateUser(email, user);
+        const result = await updateUser(email, user);
 
-            res.status(SUCCESS).json(result);
-        } catch (e) {
-            next(e);
-        }
+        res.status(SUCCESS).json(result);
     }
 
 };
