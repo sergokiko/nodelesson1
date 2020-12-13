@@ -59,6 +59,9 @@ module.exports = {
         try {
             const { email } = req.params;
             const user = req.body;
+
+            user.password = await hashPassword(user.password);
+
             const result = await updateUser(email, user);
 
             res.status(SUCCESS).json(result);
