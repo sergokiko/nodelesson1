@@ -89,6 +89,20 @@ module.exports = {
             next(e);
         }
     },
+    
+    checkUpdateDataValidity: (req, res, next) => {
+        try {
+            const { error } = updateUserValidator.validate(req.body);
+
+            if (error) {
+                throw new ErrorHandler(error.details[0].message, BAD_REQUEST);
+            }
+
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
 
     checkIfBaseNotEmpty: async (req, res, next) => {
         try {
