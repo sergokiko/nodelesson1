@@ -1,6 +1,6 @@
 const userService = require('../sevices/user.service');
 
-const { UserValidator, idValidator } = require('../validators');
+const { UserValidator, idValidator, updateUserValidator } = require('../validators');
 const {
     ErrorHandler,
     errors: {
