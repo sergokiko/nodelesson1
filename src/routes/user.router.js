@@ -23,7 +23,7 @@ userRouter.delete('/:email',
 
 userRouter.put('/:email', userMiddleware.checkIfBaseNotEmpty,
     userMiddleware.checkIfEmailExistInBase,
-    userMiddleware.checkUserCredentialsValidity,
+    userMiddleware.checkUpdateDataValidity,
     userController.updateUser);
 
 module.exports = userRouter;
