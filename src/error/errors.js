@@ -1,4 +1,4 @@
-const { BAD_REQUEST, NO_CONTENT } = require('../config/responce-codes');
+const { BAD_REQUEST, NO_CONTENT, UNAUTHORIZED } = require('../config/responce-codes');
 
 module.exports = {
     NOT_VALID_ID: {
@@ -18,5 +18,9 @@ module.exports = {
     ALREADY_EXIST_IN_BASE: {
         message: 'this user already exist',
         code: BAD_REQUEST
+    },
+    NOT_VALID_TOKEN: {
+        message: 'please login',
+        code: UNAUTHORIZED
     }
 };

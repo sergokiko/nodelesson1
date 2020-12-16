@@ -28,7 +28,7 @@ module.exports = {
     },
 
     deleteUser: async (req, res) => {
-        const user = await removeUser(req.params.email);
+        const user = await removeUser(req.params.id);
 
         res.status(SUCCESS).json(user);
     },
@@ -41,12 +41,12 @@ module.exports = {
     },
 
     updateUser: async (req, res) => {
-        const { email } = req.params;
+        const { id } = req.params;
         const user = req.body;
 
         user.password = await hashPassword(user.password);
 
-        const result = await updateUser(email, user);
+        const result = await updateUser(id, user);
 
         res.status(SUCCESS).json(result);
     }

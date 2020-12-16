@@ -59,23 +59,6 @@ module.exports = {
         }
     },
 
-    checkIfEmailForDeleteExistInBase: async (req, res, next) => {
-        try {
-            const { email } = req.params;
-            const users = await userService.findUsers();
-
-            const findUser = users.find((user) => user.email === email);
-
-            if (!findUser) {
-                throw new ErrorHandler(NOT_EXIST_IN_BASE.message, NOT_EXIST_IN_BASE.code);
-            }
-
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
-
     checkUserCredentialsValidity: (req, res, next) => {
         try {
             const { error } = UserValidator.validate(req.body);
@@ -89,7 +72,7 @@ module.exports = {
             next(e);
         }
     },
-    
+
     checkUpdateDataValidity: (req, res, next) => {
         try {
             const { error } = updateUserValidator.validate(req.body);

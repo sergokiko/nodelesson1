@@ -1,8 +1,18 @@
-const { BAD_REQUEST } = require('../config/responce-codes');
-const { ErrorHandler, errors: { NOT_VALID_BODY, NOT_EXIST_IN_BASE } } = require('../error');
-const { userService: { findUserByParams } } = require('../sevices');
+const jwt = require('jsonwebtoken');
+
+const { authService, userService: { findUserByParams } } = require('../sevices');
 const { comparePassword } = require('../helpers');
 const { loginValidator } = require('../validators');
+
+const { BAD_REQUEST } = require('../config/responce-codes');
+const {
+    ErrorHandler, errors: {
+        NOT_VALID_BODY, NOT_EXIST_IN_BASE, NOT_VALID_TOKEN, NOT_VALID_ID
+    }
+} = require('../error');
+
+const { AUTHORIZATION } = require('../constants/constants');
+const { ACCESS_TOKEN_SECRET } = require('../config/config');
 
 module.exports = {
     checkIfCredentialsValid: (req, res, next) => {
@@ -32,6 +42,7 @@ module.exports = {
             next(e);
         }
     },
+
     checkPasswordHash: async (req, res, next) => {
         try {
             const { password, email } = req.body;
@@ -49,4 +60,35 @@ module.exports = {
             next(e);
         }
     },
+
+    checkAccessToken: async (res, req, next) => {
+        try {
+            const access_token = req.get(AUTHORIZATION);
+
+            if (!access_token) {
+                throw new ErrorHandler(NOT_VALID_TOKEN.message, NOT_VALID_TOKEN.code);
+            }
+
+            jwt.verify(access_token, ACCESS_TOKEN_SECRET, (err) => {
+                if (err) {
+                    return new ErrorHandler(NOT_VALID_TOKEN.message, NOT_VALID_TOKEN.code);
+                }
+            });
+
+            const token = await authService.getTokensByParams({ access_token });
+
+            if (!token) {
+                throw new ErrorHandler(NOT_EXIST_IN_BASE.message, NOT_EXIST_IN_BASE.code);
+            }
+
+            if (token.user_id !== +res.params.id) {
+                throw new ErrorHandler(NOT_VALID_ID.message, NOT_VALID_ID.code);
+            }
+
+            req.userId = token.user_id;
+            next();
+        } catch (e) {
+            next(e);
+        }
+    }
 };

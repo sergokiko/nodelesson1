@@ -1,5 +1,8 @@
 module.exports = {
-    UserValidator: require('./user.validator'),
-    idValidator: require('./user.validator'),
-    loginValidator: require('./login.validator')
+    UserValidator: require('./users/user.validator'),
+    idValidator: require('./users/user.validator'),
+    loginValidator: require('./auth/login.validator'),
+    updateUserValidator: require('./auth/login.validator'),
+    carValidator: require('./cars/car.validator'),
+    carUpdateValidator: require('./cars/car-update.validator'),
 };

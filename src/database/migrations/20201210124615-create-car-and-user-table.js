@@ -44,6 +44,28 @@ module.exports = {
                 },
             }
         });
+
+        await queryInterface.createTable('Token', {
+            id: {
+                type: Sequelize.DataTypes.INTEGER,
+                autoIncrement: true,
+                allowNull: false,
+                primaryKey: true,
+            },
+            model: {
+                type: Sequelize.DataTypes.STRING,
+                allowNull: false,
+            },
+            user_id: {
+                type: Sequelize.DataTypes.INTEGER,
+                allowNull: false,
+                foreignKey: true,
+                references: {
+                    model: 'user',
+                    key: 'id'
+                },
+            }
+        });
     },
 
     // eslint-disable-next-line no-unused-vars

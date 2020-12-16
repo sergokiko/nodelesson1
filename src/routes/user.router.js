@@ -1,29 +1,34 @@
 const { Router } = require('express');
 const { userController } = require('../controllers');
-const userMiddleware = require('../middlewares/user.middlewares');
+const { userMiddlewares, authMiddlewares } = require('../middlewares');
 
 const userRouter = Router();
 
-userRouter.get('/', userMiddleware.checkIfBaseNotEmpty, userController.getAllUsers);
+userRouter.get('/', userMiddlewares.checkIfBaseNotEmpty, userController.getAllUsers);
 
 userRouter.post('/',
-    userMiddleware.checkUserCredentialsValidity,
-    userMiddleware.checkIfEmailExistInBase,
+    userMiddlewares.checkUserCredentialsValidity,
+    userMiddlewares.checkIfEmailExistInBase,
     userController.authNewUser);
 
-userRouter.get('/:id', userMiddleware.checkIfBaseNotEmpty,
-    userMiddleware.checkIfIdValid,
-    userMiddleware.checkIfUserWithThisIdExist,
+userRouter.get('/:id', userMiddlewares.checkIfBaseNotEmpty,
+    userMiddlewares.checkIfIdValid,
+    userMiddlewares.checkIfUserWithThisIdExist,
+    authMiddlewares.checkAccessToken,
     userController.getUserWithCarById);
 
-userRouter.delete('/:email',
-    userMiddleware.checkIfBaseNotEmpty,
-    userMiddleware.checkIfEmailForDeleteExistInBase,
+userRouter.delete('/:id',
+    userMiddlewares.checkIfBaseNotEmpty,
+    userMiddlewares.checkIfIdValid,
+    userMiddlewares.checkIfUserWithThisIdExist,
+    authMiddlewares.checkAccessToken,
     userController.deleteUser);
 
-userRouter.put('/:email', userMiddleware.checkIfBaseNotEmpty,
-    userMiddleware.checkIfEmailExistInBase,
-    userMiddleware.checkUpdateDataValidity,
+userRouter.put('/:id', userMiddlewares.checkIfBaseNotEmpty,
+    userMiddlewares.checkIfIdValid,
+    userMiddlewares.checkIfUserWithThisIdExist,
+    userMiddlewares.checkUpdateDataValidity,
+    authMiddlewares.checkAccessToken,
     userController.updateUser);
 
 module.exports = userRouter;

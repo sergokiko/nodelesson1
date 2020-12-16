@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const { PASSWORD, EMAIL } = require('../configs/regexp.emum.js');
+const { PASSWORD, EMAIL } = require('../../config/regexp.enum');
 
 module.exports = Joi.object({
     login: Joi.string().regex(EMAIL).trim(),
