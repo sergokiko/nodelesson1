@@ -1,4 +1,8 @@
-const { carService: { findCars, createCar, removeCar, updateCar } } = require('../sevices');
+const {
+    carService: {
+        findCars, createCar, removeCar, updateCar
+    }
+} = require('../sevices');
 const { CREATED, SUCCESS } = require('../config/responce-codes');
 
 module.exports = {

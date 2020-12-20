@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
-
 const { sequelize } = require('../index');
+const { foreign_key } = require('../../constants/constants');
 
 class CarModel extends Model {
 }
@@ -30,6 +30,6 @@ CarModel.init({
 
 const UserModel = require('./User');
 
-CarModel.belongsTo(UserModel, { foreignKey: 'user_id' });
+CarModel.belongsTo(UserModel, { foreignKey: foreign_key.USER_ID });
 
 module.exports = CarModel;

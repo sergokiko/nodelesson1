@@ -12,7 +12,7 @@ const {
 } = require('../error');
 
 const { AUTHORIZATION } = require('../constants/constants');
-const { ACCESS_TOKEN_SECRET } = require('../config/config');
+const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = require('../config/config');
 
 module.exports = {
     checkIfCredentialsValid: (req, res, next) => {
@@ -90,5 +90,33 @@ module.exports = {
         } catch (e) {
             next(e);
         }
+    },
+
+    checkRefreshToken: async (req, res, next) => {
+        const token = req.get(AUTHORIZATION);
+
+        if (!token) {
+            return next(new ErrorHandler(NOT_VALID_TOKEN.message, NOT_VALID_TOKEN.code));
+        }
+
+        jwt.verify(token, REFRESH_TOKEN_SECRET, (err) => {
+            if (err) {
+                return next(new ErrorHandler(NOT_VALID_TOKEN.message, NOT_VALID_TOKEN.code));
+            }
+        });
+
+        const isTokenExist = await authService.getTokensByParams({ refresh_token: token });
+
+        if (!isTokenExist) {
+            return next(new ErrorHandler(NOT_VALID_ID.message, NOT_VALID_ID.code));
+        }
+
+        if (token.user_id !== +res.params.id) {
+            throw new ErrorHandler(NOT_VALID_ID.message, NOT_VALID_ID.code);
+        }
+
+        req.userId = isTokenExist.user_id;
+
+        next();
     }
 };

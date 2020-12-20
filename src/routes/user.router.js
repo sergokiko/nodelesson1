@@ -11,24 +11,16 @@ userRouter.post('/',
     userMiddlewares.checkIfEmailExistInBase,
     userController.authNewUser);
 
-userRouter.get('/:id', userMiddlewares.checkIfBaseNotEmpty,
-    userMiddlewares.checkIfIdValid,
-    userMiddlewares.checkIfUserWithThisIdExist,
-    authMiddlewares.checkAccessToken,
-    userController.getUserWithCarById);
-
-userRouter.delete('/:id',
+userRouter.use('/:id',
     userMiddlewares.checkIfBaseNotEmpty,
     userMiddlewares.checkIfIdValid,
     userMiddlewares.checkIfUserWithThisIdExist,
-    authMiddlewares.checkAccessToken,
-    userController.deleteUser);
+    authMiddlewares.checkAccessToken,);
 
-userRouter.put('/:id', userMiddlewares.checkIfBaseNotEmpty,
-    userMiddlewares.checkIfIdValid,
-    userMiddlewares.checkIfUserWithThisIdExist,
-    userMiddlewares.checkUpdateDataValidity,
-    authMiddlewares.checkAccessToken,
-    userController.updateUser);
+userRouter.get('/:id', userController.getUserWithCarById);
+
+userRouter.delete('/:id', userController.deleteUser);
+
+userRouter.put('/:id', userMiddlewares.checkUpdateDataValidity, userController.updateUser);
 
 module.exports = userRouter;

@@ -1,7 +1,14 @@
+const {
+    NOW,
+    CASCADE,
+    tableNames: { USERS, CARS, TOKEN },
+    foreign_key: { ID }
+} = require('../../constants/constants');
+
 module.exports = {
     // eslint-disable-next-line no-unused-vars
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.createTable('user', {
+        await queryInterface.createTable(USERS, {
             id: {
                 type: Sequelize.DataTypes.INTEGER,
                 autoIncrement: true,
@@ -23,7 +30,7 @@ module.exports = {
             },
         });
 
-        await queryInterface.createTable('cars', {
+        await queryInterface.createTable(CARS, {
             id: {
                 type: Sequelize.DataTypes.INTEGER,
                 autoIncrement: true,
@@ -39,31 +46,41 @@ module.exports = {
                 allowNull: false,
                 foreignKey: true,
                 references: {
-                    model: 'user',
-                    key: 'id'
+                    model: USERS,
+                    key: ID
                 },
             }
         });
 
-        await queryInterface.createTable('Token', {
+        await queryInterface.createTable(TOKEN, {
             id: {
                 type: Sequelize.DataTypes.INTEGER,
-                autoIncrement: true,
-                allowNull: false,
                 primaryKey: true,
+                autoIncrement: true,
+                allowNull: false
             },
-            model: {
+            accessToken: {
                 type: Sequelize.DataTypes.STRING,
-                allowNull: false,
+                allowNull: false
+            },
+            refreshToken: {
+                type: Sequelize.DataTypes.STRING,
+                allowNull: false
             },
             user_id: {
                 type: Sequelize.DataTypes.INTEGER,
                 allowNull: false,
                 foreignKey: true,
+                onDelete: CASCADE,
+                onUpdate: CASCADE,
                 references: {
-                    model: 'user',
-                    key: 'id'
+                    model: USERS,
+                    key: ID
                 },
+            },
+            created_at: {
+                type: Sequelize.DataTypes.DATE,
+                defaultValue: Sequelize.fn(NOW)
             }
         });
     },
@@ -76,6 +93,8 @@ module.exports = {
          * Example:
          * await queryInterface.dropTable('users');
          */
-        await queryInterface.dropTable('user3');
+        await queryInterface.dropTable(USERS);
+        await queryInterface.dropTable(CARS);
+        await queryInterface.dropTable(TOKEN);
     }
 };

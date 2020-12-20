@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { carMiddlewares } = require('../middlewares');
+const { carMiddlewares, authMiddlewares } = require('../middlewares');
 const { carController } = require('../controllers');
 
 const carRouter = Router();
@@ -10,15 +10,17 @@ carRouter.get('/',
 
 carRouter.post('/',
     carMiddlewares.checkIfCarValid,
+    authMiddlewares.checkAccessToken,
     carController.careateNewCar);
 
+carRouter.use('/:id', authMiddlewares.checkAccessToken,
+    carMiddlewares.checkIfBaseNotEmpty);
+
 carRouter.delete('/:id',
-    carMiddlewares.checkIfBaseNotEmpty,
     carMiddlewares.checkIfCarForDeleteExistInBase,
     carController.deleteCar);
 
 carRouter.put('/:id',
-    carMiddlewares.checkIfBaseNotEmpty,
     carMiddlewares.checkUpdateDataValidity,
     carController.updateCar);
 

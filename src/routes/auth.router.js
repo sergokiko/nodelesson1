@@ -10,4 +10,8 @@ authRouter.post('/',
     authMiddlewares.checkPasswordHash,
     authController.loginUser);
 
+authRouter.post('/logout', authController.logoutUser);
+
+authRouter.post('/refresh', authMiddlewares.checkRefreshToken, authController.refreshToken);
+
 module.exports = authRouter;
