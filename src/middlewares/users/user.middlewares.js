@@ -1,14 +1,14 @@
-const userService = require('../sevices/user.service');
+const userService = require('../../sevices/user.service');
 
-const { UserValidator, idValidator, updateUserValidator } = require('../validators');
+const { UserValidator, idValidator, updateUserValidator } = require('../../validators');
 const {
     ErrorHandler,
     errors: {
         NOT_EXIST_IN_BASE,
         ALREADY_EXIST_IN_BASE
     }
-} = require('../error');
-const { BAD_REQUEST } = require('../config/responce-codes');
+} = require('../../error');
+const { BAD_REQUEST } = require('../../config/responce-codes');
 
 module.exports = {
     checkIfIdValid: (req, res, next) => {
@@ -100,4 +100,5 @@ module.exports = {
             next(e);
         }
     },
+
 };

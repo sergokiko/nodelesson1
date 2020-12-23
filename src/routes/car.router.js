@@ -1,6 +1,7 @@
 const { Router } = require('express');
-const { carMiddlewares, authMiddlewares } = require('../middlewares');
+const { carMiddlewares, authMiddlewares, checkFileMiddlewares,  } = require('../middlewares');
 const { carController } = require('../controllers');
+
 
 const carRouter = Router();
 
@@ -11,6 +12,9 @@ carRouter.get('/',
 carRouter.post('/',
     carMiddlewares.checkIfCarValid,
     authMiddlewares.checkAccessToken,
+    checkFileMiddlewares.checkFilesTypes,
+    checkFileMiddlewares.checkDocQuantity,
+    checkFileMiddlewares.checkPhotoQuantity,
     carController.careateNewCar);
 
 carRouter.use('/:id', authMiddlewares.checkAccessToken,
@@ -22,6 +26,9 @@ carRouter.delete('/:id',
 
 carRouter.put('/:id',
     carMiddlewares.checkUpdateDataValidity,
+    checkFileMiddlewares,
+    checkFileMiddlewares.checkDocQuantity,
+    checkFileMiddlewares.checkPhotoQuantity,
     carController.updateCar);
 
 module.exports = carRouter;

@@ -1,6 +1,11 @@
 const { Router } = require('express');
 const { userController } = require('../controllers');
-const { userMiddlewares, authMiddlewares } = require('../middlewares');
+const {
+    userMiddlewares,
+    authMiddlewares,
+    checkFileMiddlewares,
+    checkAvatarMiddlewares
+} = require('../middlewares');
 
 const userRouter = Router();
 
@@ -9,6 +14,8 @@ userRouter.get('/', userMiddlewares.checkIfBaseNotEmpty, userController.getAllUs
 userRouter.post('/',
     userMiddlewares.checkUserCredentialsValidity,
     userMiddlewares.checkIfEmailExistInBase,
+    checkFileMiddlewares.checkFilesTypes,
+    checkFileMiddlewares.checkAvatar,
     userController.authNewUser);
 
 userRouter.use('/:id',
@@ -21,6 +28,10 @@ userRouter.get('/:id', userController.getUserWithCarById);
 
 userRouter.delete('/:id', userController.deleteUser);
 
-userRouter.put('/:id', userMiddlewares.checkUpdateDataValidity, userController.updateUser);
+userRouter.put('/:id',
+    userMiddlewares.checkUpdateDataValidity,
+    checkFileMiddlewares.checkFilesTypes,
+    checkFileMiddlewares.checkAvatar,
+    userController.updateUser);
 
 module.exports = userRouter;

@@ -1,18 +1,18 @@
 const jwt = require('jsonwebtoken');
 
-const { authService, userService: { findUserByParams } } = require('../sevices');
-const { comparePassword } = require('../helpers');
-const { loginValidator } = require('../validators');
+const { authService, userService: { findUserByParams } } = require('../../sevices');
+const { comparePassword } = require('../../helpers');
+const { loginValidator } = require('../../validators');
 
-const { BAD_REQUEST } = require('../config/responce-codes');
+const { BAD_REQUEST } = require('../../config/responce-codes');
 const {
     ErrorHandler, errors: {
         NOT_VALID_BODY, NOT_EXIST_IN_BASE, NOT_VALID_TOKEN, NOT_VALID_ID
     }
-} = require('../error');
+} = require('../../error');
 
-const { AUTHORIZATION } = require('../constants/constants');
-const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = require('../config/config');
+const { AUTHORIZATION } = require('../../constants/constants');
+const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = require('../../config/config');
 
 module.exports = {
     checkIfCredentialsValid: (req, res, next) => {

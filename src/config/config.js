@@ -5,4 +5,6 @@ module.exports = {
     DB_PASSWORD: process.env.DATABASE_PASSWORD,
     DB_NAME: process.env.DATABASE_NAME,
     HOST: process.env.HOST,
+    EMAIL_PASS: process.env.MAIL_PASS,
+    EMAIL_USER: process.env.MAIL_USER,
 };

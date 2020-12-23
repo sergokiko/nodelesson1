@@ -16,9 +16,14 @@ module.exports = {
         include: [{ model: UserModel, as: 'user' }]
     }),
 
-    updateUser: (email, user) => UserModel.update(
+    updateUser: (id, user) => UserModel.update(
         user,
-        { where: { email } }
+        { where: { id } }
+    ),
+
+    updateAvatar: (avatar, id) => UserModel.update(
+        { avatar },
+        { where: { id } }
     )
 
 };

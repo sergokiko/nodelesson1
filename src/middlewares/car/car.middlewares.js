@@ -1,8 +1,8 @@
-const { carService } = require('../sevices');
-const { carValidator, carUpdateValidator } = require('../validators');
+const { carService } = require('../../sevices');
+const { carValidator, carUpdateValidator } = require('../../validators');
 
-const { ErrorHandler, errors: { NOT_EXIST_IN_BASE } } = require('../error');
-const { BAD_REQUEST } = require('../config/responce-codes');
+const { ErrorHandler, errors: { NOT_EXIST_IN_BASE } } = require('../../error');
+const { BAD_REQUEST } = require('../../config/responce-codes');
 
 module.exports = {
     checkIfBaseNotEmpty: async (req, res, next) => {

@@ -1,5 +1,6 @@
 module.exports = {
     UserModel: require('./User'),
     CarModel: require('./Car'),
-    TokenModel: require('./Token')
+    TokenModel: require('./Token'),
+    CarFilesModel: require('./CarFiles'),
 };
