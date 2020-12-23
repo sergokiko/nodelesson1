@@ -1,7 +1,6 @@
 const { Router } = require('express');
-const { carMiddlewares, authMiddlewares, checkFileMiddlewares,  } = require('../middlewares');
+const { carMiddlewares, authMiddlewares, checkFileMiddlewares } = require('../middlewares');
 const { carController } = require('../controllers');
-
 
 const carRouter = Router();
 
