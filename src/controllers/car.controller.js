@@ -82,7 +82,7 @@ module.exports = {
             docs
         } = req;
 
-        if (photos) {
+        if (photos.length) {
             const photosPathWithoutPublic = path.join('cars', `${id}`, 'car photos');
             const photosFullPath = path.join(process.cwd(), 'public', photosPathWithoutPublic);
 
@@ -101,7 +101,7 @@ module.exports = {
             });
         }
 
-        if (docs) {
+        if (docs.length) {
             const docPathWithoutPublic = path.join('cars', `${id}`, 'car docs');
             const docFullPath = path.join(process.cwd(), 'public', docPathWithoutPublic);
 

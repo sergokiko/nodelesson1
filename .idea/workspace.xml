@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e8dc29b6-cd1a-4023-8a12-ddbd27730190" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sevices/user.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sevices/user.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/car.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/car.controller.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,19 +52,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\database" />
-      <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\controllers" />
-      <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\routes" />
-      <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src" />
-      <recent name="C:\Users\Asus\WebstormProjects\nodelesson1" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\sevices" />
       <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\database\models" />
       <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\routes\auth" />
       <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\controllers\auth" />
       <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\middlewares\files" />
+      <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\middlewares\users" />
+      <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\middlewares\car" />
+      <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\middlewares\auth" />
+      <recent name="C:\Users\Asus\WebstormProjects\nodelesson1\src\validators\users" />
     </key>
   </component>
   <component name="RunManager">
@@ -94,7 +94,7 @@
       <workItem from="1606998781889" duration="990000" />
       <workItem from="1607001153168" duration="7514000" />
       <workItem from="1607014552997" duration="47778000" />
-      <workItem from="1607872296730" duration="13691000" />
+      <workItem from="1607872296730" duration="71097000" />
     </task>
     <task id="LOCAL-00001" summary="final">
       <created>1606221700676</created>
@@ -285,25 +285,65 @@
       <option name="project" value="LOCAL" />
       <updated>1607889559339</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="homework 5">
+      <created>1607891396802</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1607891396802</updated>
+    </task>
+    <task id="LOCAL-00029" summary="homework 6">
+      <created>1608132776349</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1608132776349</updated>
+    </task>
+    <task id="LOCAL-00030" summary="homework 7">
+      <created>1608503934960</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1608503934960</updated>
+    </task>
+    <task id="LOCAL-00031" summary="homework 9">
+      <created>1608759791069</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1608759791069</updated>
+    </task>
+    <task id="LOCAL-00032" summary="homework 9">
+      <created>1608761488890</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1608761488890</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="final" />
     <MESSAGE value="semifinal" />
     <MESSAGE value="homework 4" />
-    <MESSAGE value="homework 6" />
     <MESSAGE value="homework 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="homework 5" />
+    <MESSAGE value="homework 6" />
+    <MESSAGE value="homework 7" />
+    <MESSAGE value="homework 9" />
+    <option name="LAST_COMMIT_MESSAGE" value="homework 9" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="667" y="257" key="#ESLint" timestamp="1607885004346">
+    <state x="667" y="257" key="#ESLint" timestamp="1608754469817">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="257" key="#ESLint/0.0.1920.1040@0.0.1920.1040" timestamp="1607885004346" />
+    <state x="667" y="257" key="#ESLint/0.0.1920.1040@0.0.1920.1040" timestamp="1608754469817" />
     <state x="584" y="198" key="#Inspections" timestamp="1607612807289">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -312,19 +352,19 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="687" y="188" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607018128815" />
-    <state x="715" y="336" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607880348725">
+    <state x="715" y="336" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1608719462568">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="715" y="336" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607880348725" />
+    <state x="715" y="336" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1608719462568" />
     <state x="715" y="349" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1606227082342" />
     <state x="779" y="211" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1607626392238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="779" y="211" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607626392238" />
-    <state x="585" y="88" key="CommitChangelistDialog2" timestamp="1607889558568">
+    <state x="585" y="88" key="CommitChangelistDialog2" timestamp="1608761488150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1607889558568" />
+    <state x="585" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1608761488150" />
     <state x="640" y="275" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1607017045936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -341,22 +381,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="762" y="250" key="Github.UntrackedFilesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1606220010521" />
-    <state width="1877" height="392" key="GridCell.Tab.0.bottom" timestamp="1607886606330">
+    <state width="1877" height="392" key="GridCell.Tab.0.bottom" timestamp="1608739364116">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607886606330" />
-    <state width="1877" height="392" key="GridCell.Tab.0.center" timestamp="1607886606329">
+    <state width="1877" height="392" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608739364116" />
+    <state width="1877" height="392" key="GridCell.Tab.0.center" timestamp="1608739364116">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607886606329" />
-    <state width="1877" height="392" key="GridCell.Tab.0.left" timestamp="1607886606329">
+    <state width="1877" height="392" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608739364116" />
+    <state width="1877" height="392" key="GridCell.Tab.0.left" timestamp="1608739364115">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607886606329" />
-    <state width="1877" height="392" key="GridCell.Tab.0.right" timestamp="1607886606329">
+    <state width="1877" height="392" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608739364115" />
+    <state width="1877" height="392" key="GridCell.Tab.0.right" timestamp="1608739364116">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="392" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607886606329" />
+    <state width="1877" height="392" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608739364116" />
     <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1607018635229">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -366,10 +406,10 @@
     </state>
     <state x="469" y="172" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607017433690" />
     <state x="469" y="179" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1606221668848" />
-    <state x="560" y="270" key="Vcs.Push.Dialog.v2" timestamp="1607889561098">
+    <state x="560" y="270" key="Vcs.Push.Dialog.v2" timestamp="1608761490426">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="560" y="270" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607889561098" />
+    <state x="560" y="270" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608761490426" />
     <state x="560" y="280" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1606221795540" />
     <state x="570" y="209" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1607882726929">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -379,6 +419,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="761" y="244" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607626429213" />
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608105594420">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608105594420" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1607015417753">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
