@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fileUpload = require('express-fileupload');
+const cronRun = require('./crone-jobs');
 
 require('dotenv').config();
 
@@ -33,5 +34,8 @@ app.use('*', (err, req, res, next) => {
 // { alter: true }
 (async () => {
     await sequelize.sync();
-    app.listen(5000, (err) => err && console.log(err) || console.log('Listen 5000 ...'));
+    app.listen(5000, () => {
+        console.log('Listen 5000 ...');
+        cronRun();
+    });
 })();

@@ -3,7 +3,7 @@ const { UserModel, CarModel } = require('../database/models');
 module.exports = {
     findUsers: () => UserModel.findAll(),
 
-    createUser: (user) => UserModel.create(user),
+    createUser: (user, transaction) => UserModel.create(user, { transaction }),
 
     removeUser: (email) => UserModel.destroy({
         where: { email }
@@ -16,9 +16,14 @@ module.exports = {
         include: [{ model: UserModel, as: 'user' }]
     }),
 
-    updateUser: (id, user) => UserModel.update(
+    updateUser: (id, user, transaction) => UserModel.update(
         user,
-        { where: { id } }
+        {
+            where: { id },
+            returning: true,
+            plain: true,
+            transaction
+        },
     ),
 
     updateAvatar: (avatar, id) => UserModel.update(

@@ -3,6 +3,7 @@ const path = require('path');
 const uuid = require('uuid');
 
 const { hashPassword } = require('../helpers');
+
 const {
     emailService,
     userService: {
@@ -15,6 +16,8 @@ const {
     }
 } = require('../sevices');
 
+const transactionInstance = require('../database/create-transaction');
+
 const { CREATED, SUCCESS } = require('../config/responce-codes');
 const { WELCOME, USER_DELETED } = require('../constants/email-actions.emun');
 
@@ -24,36 +27,53 @@ module.exports = {
 
         res.status(SUCCESS).json(users);
     },
-    authNewUser: async (req, res) => {
-        const { body: { user }, avatar } = req;
+    authNewUser: async (req, res, next) => {
+        const transaction = await transactionInstance();
 
-        user.password = await hashPassword(user.password);
+        try {
+            const { body: { user }, avatar } = req;
 
-        const registeredUser = await createUser(user);
+            user.password = await hashPassword(user.password);
 
-        if (avatar) {
-            const pathWithoutPublic = path.join('user', `${registeredUser.id}`, 'photos');
-            const photoDir = path.join(process.cwd(), 'public', 'user', `${registeredUser.id}`, 'photos');
-            const fileExtension = avatar.name.split('.').pop();
-            const photoName = `${uuid}.${fileExtension}`;
-            const finalPhotoPath = path.join(pathWithoutPublic, photoName);
+            const registeredUser = await createUser(user, transaction);
 
-            await fs.mkdir(photoDir, { recursive: true });
-            await avatar.mv(path.join(photoDir, photoName));
-            await updateAvatar({ avatar: finalPhotoPath }, registeredUser.id);
+            if (avatar) {
+                const pathWithoutPublic = path.join('user', `${registeredUser.id}`, 'photos');
+                const photoDir = path.join(process.cwd(), 'public', 'user', `${registeredUser.id}`, 'photos');
+                const fileExtension = avatar.name.split('.').pop();
+                const photoName = `${uuid}.${fileExtension}`;
+                const finalPhotoPath = path.join(pathWithoutPublic, photoName);
+
+                await fs.mkdir(photoDir, { recursive: true });
+                await avatar.mv(path.join(photoDir, photoName));
+                await updateAvatar({ avatar: finalPhotoPath }, registeredUser.id);
+            }
+
+            await emailService.sendEmail(user.email, WELCOME, { userName: user.name });
+            await transaction.commit();
+
+            res.status(CREATED).json(registeredUser);
+        } catch (e) {
+            await transaction.rollback();
+            next(e);
         }
-
-        await emailService.sendEmail(user.email, WELCOME, { userName: user.name });
-
-        res.status(CREATED).json(registeredUser);
     },
 
-    deleteUser: async (req, res) => {
-        const user = await removeUser(req.params.id);
+    deleteUser: async (req, res, next) => {
+        const transaction = await transactionInstance();
 
-        await emailService.sendEmail(user.email, USER_DELETED, { userName: user.name });
+        try {
+            const user = await removeUser(req.params.id);
 
-        res.status(SUCCESS).json(user);
+            await emailService.sendEmail(user.email, USER_DELETED, { userName: user.name });
+
+            await transaction.commit();
+
+            res.status(SUCCESS).json(user);
+        } catch (e) {
+            await transaction.rollback();
+            next(e);
+        }
     },
 
     getUserWithCarById: async (req, res) => {
@@ -63,30 +83,39 @@ module.exports = {
         res.status(SUCCESS).json(foundedUser);
     },
 
-    updateUser: async (req, res) => {
-        const {
-            avatar,
-            params: { id },
-            body: { user }
-        } = req;
+    updateUser: async (req, res, next) => {
+        const transaction = await transactionInstance();
 
-        user.password = await hashPassword(user.password);
+        try {
+            const {
+                avatar,
+                params: { id },
+                body: { user }
+            } = req;
 
-        if (avatar) {
-            const pathWithoutPublic = path.join('user', `${id}`, 'photos');
-            const photoDir = path.join(process.cwd(), 'public', 'user', `${id}`, 'photos');
-            const fileExtension = avatar.name.split('.').pop();
-            const photoName = `${uuid}.${fileExtension}`;
-            const finalPhotoPath = path.join(pathWithoutPublic, photoName);
+            user.password = await hashPassword(user.password);
 
-            await fs.mkdir(photoDir, { recursive: true });
-            await avatar.mv(path.join(photoDir, photoName));
-            await updateAvatar({ avatar: finalPhotoPath }, id);
+            if (avatar) {
+                const pathWithoutPublic = path.join('user', `${id}`, 'photos');
+                const photoDir = path.join(process.cwd(), 'public', 'user', `${id}`, 'photos');
+                const fileExtension = avatar.name.split('.').pop();
+                const photoName = `${uuid}.${fileExtension}`;
+                const finalPhotoPath = path.join(pathWithoutPublic, photoName);
+
+                await fs.mkdir(photoDir, { recursive: true });
+                await avatar.mv(path.join(photoDir, photoName));
+                await updateAvatar({ avatar: finalPhotoPath }, id);
+            }
+
+            const result = await updateUser(id, user);
+
+            await transaction.commit();
+
+            res.status(SUCCESS).json(result);
+        } catch (e) {
+            await transaction.rollback();
+            next(e);
         }
-
-        const result = await updateUser(id, user);
-
-        res.status(SUCCESS).json(result);
     }
 
 };

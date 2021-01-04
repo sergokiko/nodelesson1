@@ -37,5 +37,7 @@ module.exports = {
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // XLS
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document' // DOC 2007
     ],
-    EMAIL_SERVICE: 'gmail'
+    EMAIL_SERVICE: 'gmail',
+    ONE_MONTH: 1000 * 60 * 60 * 24 * 30,
+    CRONE_TIME: '0 0 * * *',
 };
